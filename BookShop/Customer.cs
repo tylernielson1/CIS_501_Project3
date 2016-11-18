@@ -30,6 +30,16 @@ namespace edu.ksu.cis.masaaki
             this._phoneNumber = pn;
         }
 
+        public string Username
+        {
+            get { return _username; }
+        }
+
+        public string Password
+        {
+            get { return _password; }
+        }
+
         public void EditInfo()
         {
 

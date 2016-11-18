@@ -9,7 +9,7 @@ namespace edu.ksu.cis.masaaki
     public class Controller
     {
         private bool _loggedOn;
-        private List<int> _isbnList;
+        private List<string> _isbnList;
         private List<string> _usernames;
         private Customer _currentCustomer;
         private CustomerWindow _custWindow;
@@ -22,33 +22,62 @@ namespace edu.ksu.cis.masaaki
         public Controller()
         {
             this._loggedOn = false;
-            _staffWindow = new StaffWindow(this);
-            _custWindow = new CustomerWindow(this);
         }
 
-        public void RegisterNewCustomer()
+        public void RegisterNewCustomer(string fn, string ln, string un, string pass, string em, string add, string pn)
         {
-
+            foreach(string u in _usernames)
+            {
+                if (u.ToLower() == un.ToLower())
+                {
+                    return;
+                }
+            }
+            Customer customer = new Customer(fn, ln, un, pass, em, add, pn);
+            _usernames.Add(un);
+            _customers.Add(customer);
         }
 
-        public void Logon()
+        public void Logon(string user, string pass)
         {
-
+            if (_loggedOn) return;
+            foreach(Customer c in _customers)
+            {
+                if((c.Username.ToLower() == user.ToLower()) && (c.Password == pass))
+                {
+                    _currentCustomer = c;
+                    _loggedOn = true;
+                    return;
+                }
+            }
         }
 
         public void Logoff()
         {
-
+            _loggedOn = false;
+            _currentCustomer = null;
         }
 
-        public void AddBook()
+        public void AddBook(string t, string a, string p, string i, decimal price, string d, int s)
         {
-
+            foreach(string isbn in _isbnList)
+            {
+                if (isbn.ToLower() == i.ToLower())
+                {
+                    return;
+                }
+            }
+            Book book = new Book(t, a, p, i, price, d, s);
+            _isbnList.Add(i);
+            _books.Add(book);
         }
 
         public void ListCustomers()
         {
+            foreach(Customer c in _customers)
+            {
 
+            }
         }
 
         public void ListBooks()

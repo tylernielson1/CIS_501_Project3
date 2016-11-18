@@ -1,1 +1,13 @@
 C:\Users\nielson\Documents\CIS_501_Project3\BookShop\bin\Debug\BookShop.exe.config
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\bin\Debug\BookShop.exe
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\bin\Debug\BookShop.pdb
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\bin\Debug\BookShopDialogBoxes.dll
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\bin\Debug\BookShopDialogBoxes.pdb
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\obj\Debug\BookShop.csprojResolveAssemblyReference.cache
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\obj\Debug\edu.ksu.cis.masaaki.BookShop.resources
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\obj\Debug\edu.ksu.cis.masaaki.CustomerWindow.resources
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\obj\Debug\edu.ksu.cis.masaaki.Properties.Resources.resources
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\obj\Debug\edu.ksu.cis.masaaki.StaffWindow.resources
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\obj\Debug\BookShop.csproj.GenerateResource.Cache
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\obj\Debug\BookShop.exe
+C:\Users\nielson\Documents\CIS_501_Project3\BookShop\obj\Debug\BookShop.pdb

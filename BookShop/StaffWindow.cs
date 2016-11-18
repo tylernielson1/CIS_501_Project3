@@ -87,6 +87,7 @@ namespace edu.ksu.cis.masaaki
                     bookDialog.ClearDisplayItems();
                     if (bookDialog.ShowDialog() == DialogResult.Cancel) return;
                     // Edit Done button is pressed
+                    _controller.AddBook(bookDialog.BookTitle, bookDialog.Author, bookDialog.Publisher, bookDialog.ISBN, bookDialog.Price, bookDialog.Date, bookDialog.Stock);
 
                     return;
                 }

@@ -11,12 +11,12 @@ namespace edu.ksu.cis.masaaki
         private string _title;
         private string _author;
         private string _publisher;
-        private int _isbn;
-        private double _price;
+        private string _isbn;
+        private decimal _price;
         private string _date;
         private int _stock;
 
-        public Book(string t, string a, string p, int i, double price, string d, int s)
+        public Book(string t, string a, string p, string i, decimal price, string d, int s)
         {
             this._title = t;
             this._author = a;
