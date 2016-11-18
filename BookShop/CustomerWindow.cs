@@ -13,6 +13,7 @@ namespace edu.ksu.cis.masaaki
     public partial class CustomerWindow : Form
     {
         // XXX add more fields if necessary
+        private Controller _controller;
 
         CustomerDialog customerDialog;
         LoginDialog loginDialog;
@@ -27,6 +28,11 @@ namespace edu.ksu.cis.masaaki
         public CustomerWindow()
         {
             InitializeComponent();
+        }
+
+        public CustomerWindow(Controller c) : this()
+        {
+           this. _controller = c;
         }
 
         // XXX You may add overriding constructors (constructors with different set of arguments).
