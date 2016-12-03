@@ -16,7 +16,7 @@ namespace edu.ksu.cis.masaaki
     {
         StaffWindow staffWindow;
         CustomerWindow customerWindow;
-        Controller _controller = new Controller();
+        Controller controller = new Controller();
         // XXX You can add more fields
        
         public BookShop()
@@ -27,10 +27,10 @@ namespace edu.ksu.cis.masaaki
         {
             // XXX You may change the contructors of StaffWindow and CustomerWindow to take
             // some arguments
-            staffWindow = new StaffWindow(_controller);
+            staffWindow = new StaffWindow(controller);
             staffWindow.StartPosition = FormStartPosition.Manual;
             staffWindow.Location = new Point(600, 100);
-            customerWindow = new CustomerWindow(_controller);
+            customerWindow = new CustomerWindow(controller);
             customerWindow.StartPosition = FormStartPosition.Manual;
             customerWindow.Location = new Point(100, 100);    
         }
@@ -96,16 +96,15 @@ namespace edu.ksu.cis.masaaki
                                 case "AddBook":
                                     decimal price = getDecimal(words[5]);
                                     int stock = getInt(words[7]);
-                                    _controller.AddBook(words[1], words[2], words[3], words[4], price, words[6], stock);
+                                    controller.AddBook(words[1], words[2], words[3], words[4], price, words[6], stock);
 
                                     break;
                                 case "AddCustomer":
-                                    _controller.RegisterNewCustomer(words[1], words[2], words[3], words[4], words[5], words[6], words[7]);
-
+                                    controller.RegisterNewCustomer(words[1], words[2], words[3], words[4], words[5], words[6], words[7]);
                                     break;
                                 case "Login":
                                     // XXX use words[1] and words[2] to login a customer
-                                    _controller.Logon(words[1], words[2]);
+                                    controller.Logon(words[1], words[2]);
 
                                     break;
                                 case "AddBookToWishList":

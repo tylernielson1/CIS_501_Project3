@@ -58,8 +58,14 @@ namespace edu.ksu.cis.masaaki
             // First, you may want to check if anyone is logged in
             if (loginDialog.Display() == DialogReturn.Cancel) return;
             // XXX Login Button is pressed
-            _controller.Logon(loginDialog.UserName, loginDialog.Password);
-
+            try
+            {
+                _controller.Logon(loginDialog.UserName, loginDialog.Password);
+            }
+            catch(BookShopException bsex)
+            {
+                MessageBox.Show(this, bsex.ErrorMessage);
+            }
         }
 
         private void bnAddCustomer_Click(object sender, EventArgs e)
@@ -69,7 +75,14 @@ namespace edu.ksu.cis.masaaki
             if (customerDialog.Display() == DialogReturn.Cancel) return;
             // XXX pick up information from customerDialog by calling its properties
             // and register a new customer
-            _controller.RegisterNewCustomer(customerDialog.FirstName, customerDialog.LastName, customerDialog.UserName, customerDialog.Password, customerDialog.EMailAddress, customerDialog.Address, customerDialog.TelephoneNumber);
+            try
+            {
+                _controller.RegisterNewCustomer(customerDialog.FirstName, customerDialog.LastName, customerDialog.UserName, customerDialog.Password, customerDialog.EMailAddress, customerDialog.Address, customerDialog.TelephoneNumber);
+            }
+            catch(BookShopException bsex)
+            {
+                MessageBox.Show(this, bsex.ErrorMessage);
+            }
         }
 
         private void bnEditSelfInfo_Click(object sender, EventArgs e)
@@ -213,8 +226,16 @@ namespace edu.ksu.cis.masaaki
         private void bnLogout_Click(object sender, EventArgs e)
         {
             // XXX Logout  button event handler
-            _controller.Logoff();
-            lbLoggedinCustomer.Text = "Loggedin Customer: (none)";
+            try
+            {
+                _controller.Logoff();
+                lbLoggedinCustomer.Text = "Loggedin Customer: (none)";
+            }
+            catch(BookShopException bsex)
+            {
+                MessageBox.Show(this, bsex.ErrorMessage);
+            }
+
         }
     }
 }

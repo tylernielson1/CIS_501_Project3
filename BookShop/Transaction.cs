@@ -8,8 +8,8 @@ namespace edu.ksu.cis.masaaki
 {
     public class Transaction
     {
-        private double _totalPrice;
-        private Customer _customer;
-        private List<PurchasedItem> _cart;
+        private double totalPrice;
+        private Customer customer;
+        private List<PurchasedItem> cart;
     }
 }

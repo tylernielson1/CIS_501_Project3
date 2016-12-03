@@ -8,85 +8,88 @@ namespace edu.ksu.cis.masaaki
 {
     public class Controller
     {
-        private bool _loggedOn;
-        private List<string> _isbnList = new List<string>();
-        private List<string> _usernames = new List<string>();
-        private Customer _currentCustomer;
-        private CustomerWindow _custWindow;
-        private StaffWindow _staffWindow;
-        private List<Book> _books = new List<Book>();
-        private List<Customer> _customers = new List<Customer>();
-        private List<Transaction> _completedTransactions = new List<Transaction>();
-        private List<Transaction> _pendingTransactions = new List<Transaction>();
+        private bool loggedOn;
+        private List<string> isbnList = new List<string>();
+        private List<string> usernames = new List<string>();
+        private Customer currentCustomer;
+        private CustomerWindow custWindow;
+        private StaffWindow staffWindow;
+        private List<Book> books = new List<Book>();
+        private List<Customer> customers = new List<Customer>();
+        private List<Transaction> completedTransactions = new List<Transaction>();
+        private List<Transaction> pendingTransactions = new List<Transaction>();
 
         public Customer CurrentCustomer
         {
-            get { return _currentCustomer; }
-
-            set { this._currentCustomer = value; }
+            get { return currentCustomer; }
         }
 
         public List<Book> Books
         {
-            get { return _books; }
+            get { return books; }
         }
 
         public Controller()
         {
-            this._loggedOn = false;
+            this.loggedOn = false;
         }
 
         public void RegisterNewCustomer(string fn, string ln, string un, string pass, string em, string add, string pn)
         {
-            foreach(string u in _usernames)
+            foreach(string u in usernames)
             {
                 if (u.ToLower().CompareTo(un.ToLower()) == 0)
                 {
-                    return;
+                    throw new BookShopException("There is already a customer registered with this username.");
                 }
             }
             Customer customer = new Customer(fn, ln, un, pass, em, add, pn);
-            _usernames.Add(un);
-            _customers.Add(customer);
+            usernames.Add(un);
+            customers.Add(customer);
         }
 
         public void Logon(string user, string pass)
         {
-            if (_loggedOn) return;
-            foreach(Customer c in _customers)
+            if (loggedOn) throw new BookShopException("There is already a customer logged in.");
+            foreach(Customer c in customers)
             {
                 if((c.Username.ToLower().CompareTo(user.ToLower()) == 0) && (c.Password.CompareTo(pass)) == 0)
                 {
-                    _currentCustomer = c;
-                    _loggedOn = true;
+                    currentCustomer = c;
+                    loggedOn = true;
                     return;
                 }
             }
+            throw new BookShopException("Customer does not exist.");
         }
 
         public void Logoff()
         {
-            _loggedOn = false;
-            _currentCustomer = null;
+            if(!loggedOn)
+            {
+                throw new BookShopException("There is no one logged in.");
+            }
+            loggedOn = false;
+            currentCustomer = null;
         }
 
         public void AddBook(string t, string a, string p, string i, decimal price, string d, int s)
         {
-            foreach(string isbn in _isbnList)
+            foreach(string isbn in isbnList)
             {
                 if (isbn.ToLower() == i.ToLower())
                 {
-                    return;
+                    throw new BookShopException("There is already a book registered with that ISBN.");
                 }
             }
             Book book = new Book(t, a, p, i, price, d, s);
-            _isbnList.Add(i);
-            _books.Add(book);
+            isbnList.Add(i);
+            books.Add(book);
         }
 
         public void ListCustomers(ListCustomersDialog lc)
         {
-            lc.AddDisplayItems(_customers.ToArray());
+            lc.AddDisplayItems(customers.ToArray());
         }
 
         public void AddToWishList(string i)
@@ -96,7 +99,7 @@ namespace edu.ksu.cis.masaaki
 
         public void ListBooks(ListBooksDialog lb)
         {
-            lb.AddDisplayItems(_books.ToArray());
+            lb.AddDisplayItems(books.ToArray());
         }
 
         public void ListPendingTransactions()

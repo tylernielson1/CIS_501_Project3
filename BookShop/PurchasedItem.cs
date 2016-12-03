@@ -8,7 +8,7 @@ namespace edu.ksu.cis.masaaki
 {
     public class PurchasedItem
     {
-        private int _quantity;
-        private Book _book;
+        private int quantity;
+        private Book book;
     }
 }
