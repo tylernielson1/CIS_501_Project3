@@ -60,7 +60,8 @@ namespace edu.ksu.cis.masaaki
                 try
                 { // to capture an exception from SelectedIndex/SelectedItem of listCustomersDialog
                     listCustomersDialog.ClearDisplayItems();
-                    listCustomersDialog.AddDisplayItems(null); // null is a dummy argument
+                    //listCustomersDialog.AddDisplayItems(null); // null is a dummy argument
+                    _controller.ListCustomers(listCustomersDialog);
                     if (listCustomersDialog.Display() == DialogReturn.Done) return;
                     // select button is pressed
                    
@@ -109,7 +110,8 @@ namespace edu.ksu.cis.masaaki
                 try
                 {   // to capture an exception from SelectedItem/SelectedIndex of listBooksDialog
                     listBooksDialog.ClearDisplayItems();
-                    listBooksDialog.AddDisplayItems(null); //null is a dummy argument
+                    //listBooksDialog.AddDisplayItems(null); //null is a dummy argument
+                    _controller.ListBooks(listBooksDialog);
                     if (listBooksDialog.Display() == DialogReturn.Done) return;
                     // select is pressed
 

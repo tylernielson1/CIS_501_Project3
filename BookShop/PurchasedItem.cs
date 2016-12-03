@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace edu.ksu.cis.masaaki
 {
-    class PurchasedItem
+    public class PurchasedItem
     {
         private int _quantity;
         private Book _book;

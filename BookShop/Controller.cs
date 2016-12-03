@@ -9,15 +9,27 @@ namespace edu.ksu.cis.masaaki
     public class Controller
     {
         private bool _loggedOn;
-        private List<string> _isbnList;
-        private List<string> _usernames;
+        private List<string> _isbnList = new List<string>();
+        private List<string> _usernames = new List<string>();
         private Customer _currentCustomer;
         private CustomerWindow _custWindow;
         private StaffWindow _staffWindow;
-        private List<Book> _books;
-        private List<Customer> _customers;
-        private List<Transaction> _completedTransactions;
-        private List<Transaction> _pendingTransactions;
+        private List<Book> _books = new List<Book>();
+        private List<Customer> _customers = new List<Customer>();
+        private List<Transaction> _completedTransactions = new List<Transaction>();
+        private List<Transaction> _pendingTransactions = new List<Transaction>();
+
+        public Customer CurrentCustomer
+        {
+            get { return _currentCustomer; }
+
+            set { this._currentCustomer = value; }
+        }
+
+        public List<Book> Books
+        {
+            get { return _books; }
+        }
 
         public Controller()
         {
@@ -28,7 +40,7 @@ namespace edu.ksu.cis.masaaki
         {
             foreach(string u in _usernames)
             {
-                if (u.ToLower() == un.ToLower())
+                if (u.ToLower().CompareTo(un.ToLower()) == 0)
                 {
                     return;
                 }
@@ -43,7 +55,7 @@ namespace edu.ksu.cis.masaaki
             if (_loggedOn) return;
             foreach(Customer c in _customers)
             {
-                if((c.Username.ToLower() == user.ToLower()) && (c.Password == pass))
+                if((c.Username.ToLower().CompareTo(user.ToLower()) == 0) && (c.Password.CompareTo(pass)) == 0)
                 {
                     _currentCustomer = c;
                     _loggedOn = true;
@@ -72,17 +84,19 @@ namespace edu.ksu.cis.masaaki
             _books.Add(book);
         }
 
-        public void ListCustomers()
+        public void ListCustomers(ListCustomersDialog lc)
         {
-            foreach(Customer c in _customers)
-            {
-
-            }
+            lc.AddDisplayItems(_customers.ToArray());
         }
 
-        public void ListBooks()
+        public void AddToWishList(string i)
         {
 
+        }
+
+        public void ListBooks(ListBooksDialog lb)
+        {
+            lb.AddDisplayItems(_books.ToArray());
         }
 
         public void ListPendingTransactions()

@@ -6,38 +6,43 @@ using System.Threading.Tasks;
 
 namespace edu.ksu.cis.masaaki
 {
-    class Customer
+    public class Customer
     {
-        private string _firstName;
-        private string _lastName;
-        private string _username;
-        private string _password;
-        private string _email;
-        private string _address;
-        private string _phoneNumber;
-        private List<Book> _wishlist;
-        private Transaction _currentCart;
-        private List<Transaction> _transactionHistory;
+        private string firstName;
+        private string lastName;
+        private string username;
+        private string password;
+        private string email;
+        private string address;
+        private string phoneNumber;
+        private List<Book> wishlist;
+        private Transaction currentCart;
+        private List<Transaction> transactionHistory;
 
         public Customer(string fn, string ln, string un, string pass, string em, string add, string pn)
         {
-            this._firstName = fn;
-            this._lastName = ln;
-            this._username = un;
-            this._password = pass;
-            this._email = em;
-            this._address = add;
-            this._phoneNumber = pn;
+            this.firstName = fn;
+            this.lastName = ln;
+            this.username = un;
+            this.password = pass;
+            this.email = em;
+            this.address = add;
+            this.phoneNumber = pn;
         }
 
         public string Username
         {
-            get { return _username; }
+            get { return username; }
         }
 
         public string Password
         {
-            get { return _password; }
+            get { return password; }
+        }
+
+        public List<Book> Wishlist
+        {
+            get { return wishlist; }
         }
 
         public void EditInfo()
@@ -58,6 +63,19 @@ namespace edu.ksu.cis.masaaki
         public void showHistory()
         {
 
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(firstName + " ");
+            sb.Append(lastName + " ");
+            sb.Append(username + " ");
+            sb.Append(password + " ");
+            sb.Append(email + " ");
+            sb.Append(address + " ");
+            sb.Append(phoneNumber + " ");
+            return sb.ToString();
         }
     }
 }

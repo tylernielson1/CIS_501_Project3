@@ -89,7 +89,8 @@ namespace edu.ksu.cis.masaaki
                 try
                 {  // to capture an exception from SelectedItem/SelectedIndex of listBooksDialog
                     listBooksDialog.ClearDisplayItems();
-                    listBooksDialog.AddDisplayItems(null); // XXX null is a dummy argument
+                    //listBooksDialog.AddDisplayItems(null); // XXX null is a dummy argument
+                    _controller.ListBooks(listBooksDialog);
                     if (listBooksDialog.Display() == DialogReturn.Done) return;
                     // select is pressed
 
