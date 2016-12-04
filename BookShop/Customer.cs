@@ -50,9 +50,9 @@ namespace edu.ksu.cis.masaaki
 
         }
 
-        public void showWishlist()
+        public void showWishlist(ref WishListDialog wd)
         {
-
+            wd.AddDisplayItems(wishlist.ToArray());
         }
 
         public void showCart()

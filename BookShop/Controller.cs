@@ -12,8 +12,6 @@ namespace edu.ksu.cis.masaaki
         private List<string> isbnList = new List<string>();
         private List<string> usernames = new List<string>();
         private Customer currentCustomer;
-        private CustomerWindow custWindow;
-        private StaffWindow staffWindow;
         private List<Book> books = new List<Book>();
         private List<Customer> customers = new List<Customer>();
         private List<Transaction> completedTransactions = new List<Transaction>();
@@ -87,7 +85,7 @@ namespace edu.ksu.cis.masaaki
             books.Add(book);
         }
 
-        public void ListCustomers(ListCustomersDialog lc)
+        public void ListCustomers(ref ListCustomersDialog lc)
         {
             lc.AddDisplayItems(customers.ToArray());
         }
@@ -97,7 +95,7 @@ namespace edu.ksu.cis.masaaki
 
         }
 
-        public void ListBooks(ListBooksDialog lb)
+        public void ListBooks(ref ListBooksDialog lb)
         {
             lb.AddDisplayItems(books.ToArray());
         }
@@ -108,6 +106,16 @@ namespace edu.ksu.cis.masaaki
         }
 
         public void ListCompletedTransactions()
+        {
+
+        }
+
+        public void PopulateCustomerDialog(ref CustomerDialog cd)
+        {
+
+        }
+
+        public void PopulateBookInfo()
         {
 
         }

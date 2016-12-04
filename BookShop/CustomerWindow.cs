@@ -13,7 +13,7 @@ namespace edu.ksu.cis.masaaki
     public partial class CustomerWindow : Form
     {
         // XXX add more fields if necessary
-        private Controller _controller;
+        private Controller controller;
 
         CustomerDialog customerDialog;
         LoginDialog loginDialog;
@@ -32,7 +32,7 @@ namespace edu.ksu.cis.masaaki
 
         public CustomerWindow(Controller c) : this()
         {
-           this. _controller = c;
+           this.controller = c;
         }
 
         // XXX You may add overriding constructors (constructors with different set of arguments).
@@ -60,7 +60,8 @@ namespace edu.ksu.cis.masaaki
             // XXX Login Button is pressed
             try
             {
-                _controller.Logon(loginDialog.UserName, loginDialog.Password);
+                controller.Logon(loginDialog.UserName, loginDialog.Password);
+                lbLoggedinCustomer.Text = "Loggedin Customer: " + controller.CurrentCustomer.Username;
             }
             catch(BookShopException bsex)
             {
@@ -77,7 +78,7 @@ namespace edu.ksu.cis.masaaki
             // and register a new customer
             try
             {
-                _controller.RegisterNewCustomer(customerDialog.FirstName, customerDialog.LastName, customerDialog.UserName, customerDialog.Password, customerDialog.EMailAddress, customerDialog.Address, customerDialog.TelephoneNumber);
+                controller.RegisterNewCustomer(customerDialog.FirstName, customerDialog.LastName, customerDialog.UserName, customerDialog.Password, customerDialog.EMailAddress, customerDialog.Address, customerDialog.TelephoneNumber);
             }
             catch(BookShopException bsex)
             {
@@ -88,7 +89,14 @@ namespace edu.ksu.cis.masaaki
         private void bnEditSelfInfo_Click(object sender, EventArgs e)
         {
             // XXX Edit Self Info button event handler
-
+            try
+            {
+                controller.PopulateCustomerDialog(ref customerDialog);
+            }
+            catch(BookShopException bsex)
+            {
+                MessageBox.Show(this, bsex.ErrorMessage);
+            }
             if (customerDialog.Display() == DialogReturn.Cancel) return;
             // XXX Done button is pressed
         }
@@ -103,7 +111,7 @@ namespace edu.ksu.cis.masaaki
                 {  // to capture an exception from SelectedItem/SelectedIndex of listBooksDialog
                     listBooksDialog.ClearDisplayItems();
                     //listBooksDialog.AddDisplayItems(null); // XXX null is a dummy argument
-                    _controller.ListBooks(listBooksDialog);
+                    controller.ListBooks(ref listBooksDialog);
                     if (listBooksDialog.Display() == DialogReturn.Done) return;
                     // select is pressed
 
@@ -140,7 +148,8 @@ namespace edu.ksu.cis.masaaki
                 try
                 { // to capture an excepton by SelectedItem/SelectedIndex of wishListDialog
                     wishListDialog.ClearDisplayItems();
-                    wishListDialog.AddDisplayItems(null);  // XXX null is a dummy argument
+                    controller.CurrentCustomer.showWishlist(ref wishListDialog);
+                    //wishListDialog.AddDisplayItems(null);  // XXX null is a dummy argument
                     if (wishListDialog.Display() == DialogReturn.Done) return;
                     // select is pressed
                     //XXX 
@@ -228,7 +237,7 @@ namespace edu.ksu.cis.masaaki
             // XXX Logout  button event handler
             try
             {
-                _controller.Logoff();
+                controller.Logoff();
                 lbLoggedinCustomer.Text = "Loggedin Customer: (none)";
             }
             catch(BookShopException bsex)

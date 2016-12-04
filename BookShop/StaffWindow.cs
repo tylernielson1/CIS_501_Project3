@@ -13,7 +13,7 @@ namespace edu.ksu.cis.masaaki
     public partial class StaffWindow : Form
     {
         // XXX add more fields if necessary
-        private Controller _controller;
+        private Controller controller;
 
         ListCustomersDialog listCustomersDialog;
         CustomerDialog customerDialog;
@@ -31,7 +31,7 @@ namespace edu.ksu.cis.masaaki
 
         public StaffWindow(Controller c) : this()
         {
-            this._controller = c;
+            this.controller = c;
         }
 
         // XXX You may add overriding constructors (constructors with different set of arguments).
@@ -61,7 +61,7 @@ namespace edu.ksu.cis.masaaki
                 { // to capture an exception from SelectedIndex/SelectedItem of listCustomersDialog
                     listCustomersDialog.ClearDisplayItems();
                     //listCustomersDialog.AddDisplayItems(null); // null is a dummy argument
-                    _controller.ListCustomers(listCustomersDialog);
+                    controller.ListCustomers(ref listCustomersDialog);
                     if (listCustomersDialog.Display() == DialogReturn.Done) return;
                     // select button is pressed
                    
@@ -88,7 +88,7 @@ namespace edu.ksu.cis.masaaki
                     bookDialog.ClearDisplayItems();
                     if (bookDialog.ShowDialog() == DialogResult.Cancel) return;
                     // Edit Done button is pressed
-                    _controller.AddBook(bookDialog.BookTitle, bookDialog.Author, bookDialog.Publisher, bookDialog.ISBN, bookDialog.Price, bookDialog.Date, bookDialog.Stock);
+                    controller.AddBook(bookDialog.BookTitle, bookDialog.Author, bookDialog.Publisher, bookDialog.ISBN, bookDialog.Price, bookDialog.Date, bookDialog.Stock);
 
                     return;
                 }
@@ -111,7 +111,7 @@ namespace edu.ksu.cis.masaaki
                 {   // to capture an exception from SelectedItem/SelectedIndex of listBooksDialog
                     listBooksDialog.ClearDisplayItems();
                     //listBooksDialog.AddDisplayItems(null); //null is a dummy argument
-                    _controller.ListBooks(listBooksDialog);
+                    controller.ListBooks(ref listBooksDialog);
                     if (listBooksDialog.Display() == DialogReturn.Done) return;
                     // select is pressed
 
