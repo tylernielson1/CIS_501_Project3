@@ -154,6 +154,18 @@ namespace edu.ksu.cis.masaaki
             currentCart = new Transaction(this);
         }
 
+        public void RemoveTransaction(Transaction t)
+        {
+            foreach(Transaction trans in transactionHistory)
+            {
+                if(trans == t)
+                {
+                    transactionHistory.Remove(t);
+                    break;
+                }
+            }
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

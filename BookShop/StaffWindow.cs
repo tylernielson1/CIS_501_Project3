@@ -126,7 +126,6 @@ namespace edu.ksu.cis.masaaki
                             if (bookDialog.Display() == DialogReturn.Cancel) break;
                             // XXX
                             controller.EditBookInfo(ref bookDialog, controller.Books[listBooksDialog.SelectedIndex]);
-
                             break;
                         }
                         catch (BookShopException bsex)
@@ -153,27 +152,32 @@ namespace edu.ksu.cis.masaaki
                 try
                 {  // to capture an exception from SelectedIndex/SelectedItem of listPendingTransactionsDialog
                     listPendingTransactionsDialog.ClearDisplayItems();
-                    listPendingTransactionsDialog.AddDisplayItems(null);  // null is a dummy argument
+                    controller.ListPendingTransactions(ref listPendingTransactionsDialog);
+                    //listPendingTransactionsDialog.AddDisplayItems(null);  // null is a dummy argument
                     if (listPendingTransactionsDialog.Display() == DialogReturn.Done) return;
                     // select button is pressed
+                    
               
                     while (true)
                     {
                         try
                         {  // to capture an exception from SelectedItem/SelectedTransaction of showPendingTransactionDialog
                             showPendingTransactionDialog.ClearDisplayItems();
-                            showPendingTransactionDialog.AddDisplayItems(null); // null is a dummy argument
+                            controller.PopulatePendingTransaction(ref showPendingTransactionDialog, controller.PendingTransactions[listPendingTransactionsDialog.SelectedIndex]);
+                            //showPendingTransactionDialog.AddDisplayItems(null); // null is a dummy argument
                             switch (showPendingTransactionDialog.Display())
                             {
                                 case DialogReturn.Approve:  // Transaction Processed
                                     // XXX
+                                    controller.ApproveTransaction(controller.PendingTransactions[listPendingTransactionsDialog.SelectedIndex]);
                                     break;
                                 case DialogReturn.ReturnBook: // Return Book
                                     // XXX
-                                        
+                                    controller.RemoveFromPending(controller.PendingTransactions[showPendingTransactionDialog.SelectedIndex].Customer)
                                     continue;
                                 case DialogReturn.Remove: // Remove transaction
                                     // XXX
+                                    controller.RemovePendingTransaction(controller.PendingTransactions[listPendingTransactionsDialog.SelectedIndex]);
 
                                     break;
                             }
@@ -203,17 +207,19 @@ namespace edu.ksu.cis.masaaki
                 try
                 { // to capture an exception from SelectedItem/SelectedIndex of listCompleteTransactionsDialog
                     listCompleteTransactionsDialog.ClearDisplayItems();
-                    listCompleteTransactionsDialog.AddDisplayItems(null); // XXX null is a dummy argument
+                    controller.ListCompletedTransactions(ref listCompleteTransactionsDialog);
+                    //listCompleteTransactionsDialog.AddDisplayItems(null); // XXX null is a dummy argument
                     if (listCompleteTransactionsDialog.Display() == DialogReturn.Done) return;
                     // select button is pressed
                     
                     showCompleteTransactionDialog.ClearDisplayItems();
-                    showCompleteTransactionDialog.AddDisplayItems(null); // XXX null is a dummy argument
+                    controller.PopulateCompletedTransaction(ref showCompleteTransactionDialog, controller.CompletedTransactions[listCompleteTransactionsDialog.SelectedIndex]);
+                    //showCompleteTransactionDialog.AddDisplayItems(null); // XXX null is a dummy argument
                     switch (showCompleteTransactionDialog.Display())
                     {
                         case DialogReturn.Remove: // transaction Remove
                             // XXX
-
+                            controller.RemoveCompletedTransaction(controller.CompletedTransactions[listCompleteTransactionsDialog.SelectedIndex]);
                             continue;
                         case DialogReturn.Done:
                             continue;

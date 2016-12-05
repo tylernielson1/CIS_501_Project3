@@ -124,6 +124,7 @@ namespace edu.ksu.cis.masaaki
                                 case "ProcessPendingTransaction":
                                     // XXX use words[1] (index of the pending transactions) to identify the pending
                                     // transaction to approve
+                                    controller.ApproveTransaction(controller.PendingTransactions[Convert.ToInt32(words[1])]);
 
                                     break;
                                 default:

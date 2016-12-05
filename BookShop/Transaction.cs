@@ -22,6 +22,12 @@ namespace edu.ksu.cis.masaaki
             get { return cart; }
         }
 
+        public Customer Customer
+        {
+            get { return customer; }
+            set { customer = value; }
+        }
+
         public decimal Price
         {
             get { return totalPrice; }

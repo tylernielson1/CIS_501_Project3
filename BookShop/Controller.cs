@@ -36,6 +36,17 @@ namespace edu.ksu.cis.masaaki
         {
             get { return loggedOn;}
         }
+
+        public List<Transaction> PendingTransactions
+        {
+            get { return pendingTransactions; }
+        }
+
+        public List<Transaction> CompletedTransactions
+        {
+            get { return completedTransactions; }
+        }
+
         public Controller()
         {
             this.loggedOn = false;
@@ -155,6 +166,14 @@ namespace edu.ksu.cis.masaaki
             }
         }
 
+        public void RemoveFromPending(string i)
+        {
+            foreach(Book b in books)
+            {
+
+            }
+        }
+
         public void DisplayWishlist(ref WishListDialog wd)
         {
             if (!loggedOn)
@@ -169,14 +188,85 @@ namespace edu.ksu.cis.masaaki
             lb.AddDisplayItems(books.ToArray());
         }
 
-        public void ListPendingTransactions()
+        public void ListPendingTransactions(ref ListPendingTransactionsDialog pt)
         {
-
+            foreach(Transaction t  in pendingTransactions)
+            {
+                pt.AddDisplayItems(t.Customer.Username + " : " + t);
+            }
         }
 
-        public void ListCompletedTransactions()
+        public void ListCompletedTransactions(ref ListCompleteTransactionsDialog ct)
         {
+            foreach(Transaction t in completedTransactions)
+            {
+                ct.AddDisplayItems(t.Customer.Username + " : " + t);
+            }
+        }
 
+        public void PopulatePendingTransaction(ref ShowPendingTransactionDialog spt, Transaction t)
+        {
+            spt.AddDisplayItems(t.Cart.ToArray());
+            spt.AddDisplayItems("====================================================");
+            spt.AddDisplayItems("Total Price: $" + t.Price);
+        }
+
+        public void PopulateCompletedTransaction(ref ShowCompleteTransactionDialog scp, Transaction t)
+        {
+            scp.AddDisplayItems(t.Cart.ToArray());
+            scp.AddDisplayItems("====================================================");
+            scp.AddDisplayItems("Total Price: $" + t.Price);
+        }
+
+        public void ApproveTransaction(Transaction t)
+        {
+            foreach(Transaction trans in pendingTransactions)
+            {
+                if(trans == t)
+                {
+                    completedTransactions.Add(t);
+                    pendingTransactions.Remove(t);
+                    break;
+                }
+            }
+        }
+
+        public void RemovePendingTransaction(Transaction t)
+        {
+            foreach(Transaction trans in pendingTransactions)
+            {
+                if(trans == t)
+                {
+                    foreach(Customer c in customers)
+                    {
+                        if(c == t.Customer)
+                        {
+                            c.RemoveTransaction(t);
+                        }
+                    }
+                    pendingTransactions.Remove(t);
+                    break;
+                }
+            }
+        }
+
+        public void RemoveCompletedTransaction(Transaction t)
+        {
+            foreach(Transaction trans in completedTransactions)
+            {
+                if(trans == t)
+                {
+                    foreach (Customer c in customers)
+                    {
+                        if (c == t.Customer)
+                        {
+                            c.RemoveTransaction(t);
+                        }
+                    }
+                    completedTransactions.Remove(t);
+                    break;
+                }
+            }
         }
 
         public void ShowCustomerHistory(ref ListTransactionHistoryDialog th)
