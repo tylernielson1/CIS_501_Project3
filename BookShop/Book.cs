@@ -24,80 +24,38 @@ namespace edu.ksu.cis.masaaki
 
         public string Title
         {
-            get
-            {
-                return title;
-            }
-
-            set
-            {
-                title = value;
-            }
+            get { return title; }
+            set { title = value; }
         }
 
         public string Author
         {
-            get
-            {
-                return author;
-            }
-
-            set
-            {
-                author = value;
-            }
+            get { return author; }
+            set { author = value; }
         }
 
         public string Publisher
         {
-            get
-            {
-                return publisher;
-            }
-
-            set
-            {
-                publisher = value;
-            }
+            get { return publisher; }
+            set { publisher = value; }
         }
 
         public decimal Price
         {
-            get
-            {
-                return price;
-            }
-
-            set
-            {
-                price = value;
-            }
+            get { return price; }
+            set { price = value; }
         }
 
         public string Date
         {
-            get
-            {
-                return date;
-            }
-
-            set
-            {
-                date = value;
-            }
+            get { return date; }
+            set { date = value; }
         }
 
         public int Stock
         {
-            get
-            {
-                return stock;
-            }
-
-            set
-            {
-                stock = value;
-            }
+            get { return stock; }
+            set { stock = value; }
         }
 
         public Book(string t, string a, string p, string i, decimal price, string d, int s)
