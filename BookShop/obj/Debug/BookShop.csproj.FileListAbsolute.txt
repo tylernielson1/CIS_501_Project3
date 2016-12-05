@@ -24,3 +24,16 @@ C:\Users\Tyler\Documents\College\Fall 16\CIS 501\CIS_501_Project3\BookShop\bin\D
 C:\Users\Tyler\Documents\College\Fall 16\CIS 501\CIS_501_Project3\BookShop\bin\Debug\BookShop.pdb
 C:\Users\Tyler\Documents\College\Fall 16\CIS 501\CIS_501_Project3\BookShop\bin\Debug\BookShopDialogBoxes.dll
 C:\Users\Tyler\Documents\College\Fall 16\CIS 501\CIS_501_Project3\BookShop\bin\Debug\BookShopDialogBoxes.pdb
+U:\CIS_501_Project3\BookShop\bin\Debug\BookShop.exe.config
+U:\CIS_501_Project3\BookShop\obj\Debug\BookShop.exe
+U:\CIS_501_Project3\BookShop\obj\Debug\BookShop.pdb
+U:\CIS_501_Project3\BookShop\bin\Debug\BookShop.exe
+U:\CIS_501_Project3\BookShop\bin\Debug\BookShop.pdb
+U:\CIS_501_Project3\BookShop\bin\Debug\BookShopDialogBoxes.dll
+U:\CIS_501_Project3\BookShop\bin\Debug\BookShopDialogBoxes.pdb
+U:\CIS_501_Project3\BookShop\obj\Debug\BookShop.csprojResolveAssemblyReference.cache
+U:\CIS_501_Project3\BookShop\obj\Debug\edu.ksu.cis.masaaki.BookShop.resources
+U:\CIS_501_Project3\BookShop\obj\Debug\edu.ksu.cis.masaaki.CustomerWindow.resources
+U:\CIS_501_Project3\BookShop\obj\Debug\edu.ksu.cis.masaaki.Properties.Resources.resources
+U:\CIS_501_Project3\BookShop\obj\Debug\edu.ksu.cis.masaaki.StaffWindow.resources
+U:\CIS_501_Project3\BookShop\obj\Debug\BookShop.csproj.GenerateResource.Cache

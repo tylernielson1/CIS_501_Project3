@@ -27,6 +27,10 @@ namespace edu.ksu.cis.masaaki
             get { return books; }
         }
 
+        public bool LoggedIn
+        {
+            get { return loggedOn;}
+        }
         public Controller()
         {
             this.loggedOn = false;
@@ -48,7 +52,6 @@ namespace edu.ksu.cis.masaaki
 
         public void Logon(string user, string pass)
         {
-            if (loggedOn) throw new BookShopException("There is already a customer logged in.");
             foreach(Customer c in customers)
             {
                 if((c.Username.ToLower().CompareTo(user.ToLower()) == 0) && (c.Password.CompareTo(pass)) == 0)
@@ -92,7 +95,26 @@ namespace edu.ksu.cis.masaaki
 
         public void AddToWishList(string i)
         {
+            if (!loggedOn)
+            {
+                throw new BookShopException("There is no one logged in.");
+            }
+            foreach(Book b in books)
+            {
+                if(b.ISBN == i)
+                {
+                    currentCustomer.addBookToWishlist(b);
+                }
+            }
+        }
 
+        public void DisplayWishlist(ref WishListDialog wd)
+        {
+            if (!loggedOn)
+            {
+                throw new BookShopException("This operation requires login.");
+            }
+            currentCustomer.showWishlist(ref wd);
         }
 
         public void ListBooks(ref ListBooksDialog lb)
@@ -112,10 +134,28 @@ namespace edu.ksu.cis.masaaki
 
         public void PopulateCustomerDialog(ref CustomerDialog cd)
         {
-
+            if (!loggedOn) throw new BookShopException("This operation requires login.");
+            cd.FirstName = currentCustomer.FirstName;
+            cd.LastName = currentCustomer.LastName;
+            cd.UserName = currentCustomer.Username;
+            cd.Password = currentCustomer.Password;
+            cd.EMailAddress = currentCustomer.Email;
+            cd.Address = currentCustomer.Address;
+            cd.TelephoneNumber = currentCustomer.PhoneNumber;
         }
 
-        public void PopulateBookInfo()
+        public void PopulateBookInfo(ref BookInformationDialog bid, Book b)
+        {
+            bid.BookTitle = b.Title;
+            bid.Author = b.Author;
+            bid.Publisher = b.Publisher;
+            bid.ISBN = b.ISBN;
+            bid.Price = b.Price;
+            bid.Date = b.Date;
+            bid.Stock = b.Stock;
+        }
+
+        public void EditCustomerInfo(ref CustomerDialog cd)
         {
 
         }

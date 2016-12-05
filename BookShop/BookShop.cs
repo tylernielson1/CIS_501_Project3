@@ -105,11 +105,12 @@ namespace edu.ksu.cis.masaaki
                                 case "Login":
                                     // XXX use words[1] and words[2] to login a customer
                                     controller.Logon(words[1], words[2]);
+                                    customerWindow.LoggedInLabel = words[1];
 
                                     break;
                                 case "AddBookToWishList":
                                     // XXX use words[1] (ISBN) to register the book in the current customer's wishlist
-
+                                    controller.AddToWishList(words[1]);
 
                                     break;
                                 case "AddBookToCart":

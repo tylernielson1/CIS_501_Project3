@@ -10,6 +10,6 @@ namespace edu.ksu.cis.masaaki
     {
         private double totalPrice;
         private Customer customer;
-        private List<PurchasedItem> cart;
+        private List<PurchasedItem> cart = new List<PurchasedItem>();
     }
 }

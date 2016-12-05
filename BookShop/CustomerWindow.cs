@@ -25,6 +25,11 @@ namespace edu.ksu.cis.masaaki
         ListTransactionHistoryDialog listTransactionHistoryDialog;
         ShowTransactionDialog showTransactionDialog;
 
+        public string LoggedInLabel
+        {
+            set { lbLoggedinCustomer.Text = "Logged In Customer: " + value; }
+        }
+
         public CustomerWindow()
         {
             InitializeComponent();
@@ -54,14 +59,17 @@ namespace edu.ksu.cis.masaaki
 
         private void bnLogin_Click(object sender, EventArgs e)
         {
-            // XXX Login Button event handler
-            // First, you may want to check if anyone is logged in
-            if (loginDialog.Display() == DialogReturn.Cancel) return;
-            // XXX Login Button is pressed
             try
             {
+                if (controller.LoggedIn) throw new BookShopException("There is already someone logged in.");
+                // XXX Login Button event handler
+                // First, you may want to check if anyone is logged in
+                loginDialog.UserName = "";
+                loginDialog.Password = "";
+                if (loginDialog.Display() == DialogReturn.Cancel) return;
+                // XXX Login Button is pressed
                 controller.Logon(loginDialog.UserName, loginDialog.Password);
-                lbLoggedinCustomer.Text = "Loggedin Customer: " + controller.CurrentCustomer.Username;
+                lbLoggedinCustomer.Text = "Logged In Customer: " + controller.CurrentCustomer.Username;
             }
             catch(BookShopException bsex)
             {
@@ -96,9 +104,11 @@ namespace edu.ksu.cis.masaaki
             catch(BookShopException bsex)
             {
                 MessageBox.Show(this, bsex.ErrorMessage);
+                return;
             }
             if (customerDialog.Display() == DialogReturn.Cancel) return;
             // XXX Done button is pressed
+            controller.EditCustomerInfo(ref customerDialog);
         }
 
         private void bnBook_Click(object sender, EventArgs e)
@@ -114,15 +124,17 @@ namespace edu.ksu.cis.masaaki
                     controller.ListBooks(ref listBooksDialog);
                     if (listBooksDialog.Display() == DialogReturn.Done) return;
                     // select is pressed
+                    controller.PopulateBookInfo(ref bookInformationDialog, controller.Books[listBooksDialog.SelectedIndex]);
 
                     switch (bookInformationDialog.Display())
                     {
+                        
                         case DialogReturn.AddToCart: // Add to Cart
                            // XXX
                             continue;
 
                         case DialogReturn.AddToWishList: // Add to Wishlist
-                            // XXX
+                            controller.AddToWishList(controller.Books[listBooksDialog.SelectedIndex].ISBN);
 
                             continue;
 
@@ -148,11 +160,11 @@ namespace edu.ksu.cis.masaaki
                 try
                 { // to capture an excepton by SelectedItem/SelectedIndex of wishListDialog
                     wishListDialog.ClearDisplayItems();
-                    controller.CurrentCustomer.showWishlist(ref wishListDialog);
+                    controller.DisplayWishlist(ref wishListDialog);
                     //wishListDialog.AddDisplayItems(null);  // XXX null is a dummy argument
                     if (wishListDialog.Display() == DialogReturn.Done) return;
                     // select is pressed
-                    //XXX 
+                    
                     switch (bookInWishListDialog.Display())
                     {
                         case DialogReturn.AddToCart:
@@ -170,7 +182,7 @@ namespace edu.ksu.cis.masaaki
                 catch(BookShopException bsex)
                 {
                     MessageBox.Show(this, bsex.ErrorMessage);
-                    continue;
+                    return;
                 }
             }
         }
@@ -238,7 +250,7 @@ namespace edu.ksu.cis.masaaki
             try
             {
                 controller.Logoff();
-                lbLoggedinCustomer.Text = "Loggedin Customer: (none)";
+                lbLoggedinCustomer.Text = "Logged In Customer: (none)";
             }
             catch(BookShopException bsex)
             {

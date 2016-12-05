@@ -15,9 +15,9 @@ namespace edu.ksu.cis.masaaki
         private string email;
         private string address;
         private string phoneNumber;
-        private List<Book> wishlist;
+        private List<Book> wishlist = new List<Book>();
         private Transaction currentCart;
-        private List<Transaction> transactionHistory;
+        private List<Transaction> transactionHistory = new List<Transaction>();
 
         public Customer(string fn, string ln, string un, string pass, string em, string add, string pn)
         {
@@ -45,14 +45,43 @@ namespace edu.ksu.cis.masaaki
             get { return wishlist; }
         }
 
-        public void EditInfo()
+        public string FirstName
         {
+            get { return firstName; }
+        }
 
+        public string LastName
+        {
+            get { return lastName; }
+        }
+
+        public string Email
+        {
+            get { return email; }
+        }
+
+        public string Address
+        {
+            get { return address; }
+        }
+
+        public string PhoneNumber
+        {
+            get { return phoneNumber; }
         }
 
         public void showWishlist(ref WishListDialog wd)
         {
             wd.AddDisplayItems(wishlist.ToArray());
+        }
+
+        public void addBookToWishlist(Book b)
+        {
+            wishlist.Add(b);
+        }
+        public void removeBookFromWishlist(Book b)
+        {
+
         }
 
         public void showCart()
@@ -71,10 +100,9 @@ namespace edu.ksu.cis.masaaki
             sb.Append(firstName + " ");
             sb.Append(lastName + " ");
             sb.Append(username + " ");
-            sb.Append(password + " ");
             sb.Append(email + " ");
             sb.Append(address + " ");
-            sb.Append(phoneNumber + " ");
+            sb.Append(phoneNumber);
             return sb.ToString();
         }
     }

@@ -46,3 +46,27 @@ C:\Users\Tyler\Documents\College\Fall 16\CIS 501\CIS_501_Project3\BookShopDialog
 C:\Users\Tyler\Documents\College\Fall 16\CIS 501\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\BookShopDialogBoxes.csproj.GenerateResource.Cache
 C:\Users\Tyler\Documents\College\Fall 16\CIS 501\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\BookShopDialogBoxes.dll
 C:\Users\Tyler\Documents\College\Fall 16\CIS 501\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\BookShopDialogBoxes.pdb
+U:\CIS_501_Project3\BookShopDialogBoxes\bin\Debug\BookShopDialogBoxes.dll.config
+U:\CIS_501_Project3\BookShopDialogBoxes\bin\Debug\BookShopDialogBoxes.dll
+U:\CIS_501_Project3\BookShopDialogBoxes\bin\Debug\BookShopDialogBoxes.pdb
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\BookShopDialogBoxes.csprojResolveAssemblyReference.cache
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.BookDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.BookInformationDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.BookInWishListDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.CartDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.CustomerDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.ListBooksDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.ListCompleteTransactionsDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.ListCustomersDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.ListPendingTransactionsDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.ListTransactionHistoryDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.LoginDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.Properties.Resources.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.SelectDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.ShowCompleteTransactionDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.ShowPendingTransactionDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.ShowTransactionDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\edu.ksu.cis.masaaki.WishListDialog.resources
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\BookShopDialogBoxes.csproj.GenerateResource.Cache
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\BookShopDialogBoxes.dll
+U:\CIS_501_Project3\BookShopDialogBoxes\obj\Debug\BookShopDialogBoxes.pdb

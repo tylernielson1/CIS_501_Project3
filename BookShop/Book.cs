@@ -21,27 +21,105 @@ namespace edu.ksu.cis.masaaki
             get { return isbn; }
         }
 
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+
+            set
+            {
+                title = value;
+            }
+        }
+
+        public string Author
+        {
+            get
+            {
+                return author;
+            }
+
+            set
+            {
+                author = value;
+            }
+        }
+
+        public string Publisher
+        {
+            get
+            {
+                return publisher;
+            }
+
+            set
+            {
+                publisher = value;
+            }
+        }
+
+        public decimal Price
+        {
+            get
+            {
+                return price;
+            }
+
+            set
+            {
+                price = value;
+            }
+        }
+
+        public string Date
+        {
+            get
+            {
+                return date;
+            }
+
+            set
+            {
+                date = value;
+            }
+        }
+
+        public int Stock
+        {
+            get
+            {
+                return stock;
+            }
+
+            set
+            {
+                stock = value;
+            }
+        }
+
         public Book(string t, string a, string p, string i, decimal price, string d, int s)
         {
-            this.title = t;
-            this.author = a;
-            this.publisher = p;
+            this.Title = t;
+            this.Author = a;
+            this.Publisher = p;
             this.isbn = i;
-            this.price = price;
-            this.date = d;
-            this.stock = s;
+            this.Price = price;
+            this.Date = d;
+            this.Stock = s;
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(title + " ");
-            sb.Append(author + " ");
-            sb.Append(publisher + " ");
+            sb.Append(Title + " ");
+            sb.Append(Author + " ");
+            sb.Append(Publisher + " ");
             sb.Append(isbn + " ");
-            sb.Append(price + " ");
-            sb.Append(date + " ");
-            sb.Append(stock + " ");
+            sb.Append(Price + " ");
+            sb.Append(Date + " ");
+            sb.Append(Stock);
             return sb.ToString();
         }
 
