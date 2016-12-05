@@ -11,16 +11,27 @@ namespace edu.ksu.cis.masaaki
         private int quantity;
         private Book book;
 
-        public int Stock
+        public int Quantity
         {
             get { return quantity; }
             set { this.quantity = value; }
         }
+        public Book Book
+        {
+            get { return book; }
+        }
 
-        public PurchasedItem(int q, Book b)
+        public PurchasedItem(Book b, int q)
         {
             quantity = q;
             book = b;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(book.Title + " BY " + book.Author + " : " + quantity);
+            return sb.ToString();
         }
     }
 }

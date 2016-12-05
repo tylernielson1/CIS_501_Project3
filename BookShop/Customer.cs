@@ -33,11 +33,13 @@ namespace edu.ksu.cis.masaaki
         public string Username
         {
             get { return username; }
+            set { username = value; }
         }
 
         public string Password
         {
             get { return password; }
+            set { password = value; }
         }
 
         public List<Book> Wishlist
@@ -48,26 +50,31 @@ namespace edu.ksu.cis.masaaki
         public string FirstName
         {
             get { return firstName; }
+            set { firstName = value; }
         }
 
         public string LastName
         {
             get { return lastName; }
+            set { lastName = value; }
         }
 
         public string Email
         {
             get { return email; }
+            set { email = value; }
         }
 
         public string Address
         {
             get { return address; }
+            set { address = value; }
         }
 
         public string PhoneNumber
         {
             get { return phoneNumber; }
+            set { phoneNumber = value; }
         }
 
         public void showWishlist(ref WishListDialog wd)
@@ -81,10 +88,25 @@ namespace edu.ksu.cis.masaaki
         }
         public void removeBookFromWishlist(Book b)
         {
-
+            wishlist.Remove(b);
         }
 
-        public void showCart()
+        public void AddToCart(Book b)
+        {
+            if (b.Stock <= 0) throw new BookShopException("This book is out of stock.");
+            foreach(PurchasedItem p in currentCart.Cart)
+            {
+                if(p.Book.ISBN == b.ISBN)
+                {
+                    p.Quantity++;
+                    return;
+                }
+            }
+            PurchasedItem p = new PurchasedItem(b, 1);
+            currentCart.Cart.Add(p);
+        }
+
+        public void showCart(ref CartDialog cd)
         {
 
         }

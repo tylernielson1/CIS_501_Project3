@@ -114,7 +114,7 @@ namespace edu.ksu.cis.masaaki
 
                                     break;
                                 case "AddBookToCart":
-                                    // XXX use words[1] (ISBN) to add the book in the current customer's cart
+                                    controller.AddToCart(words[1]);
 
                                     break;
                                 case "CheckOut":

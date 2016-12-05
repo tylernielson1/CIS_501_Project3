@@ -109,6 +109,7 @@ namespace edu.ksu.cis.masaaki
             if (customerDialog.Display() == DialogReturn.Cancel) return;
             // XXX Done button is pressed
             controller.EditCustomerInfo(ref customerDialog);
+            lbLoggedinCustomer.Text = "Logged In Customer: " + controller.CurrentCustomer.Username;
         }
 
         private void bnBook_Click(object sender, EventArgs e)
@@ -146,7 +147,7 @@ namespace edu.ksu.cis.masaaki
                 catch (BookShopException bsex)
                 {
                     MessageBox.Show(this, bsex.ErrorMessage);
-                    continue;
+                    return;
                 }
             }
         }
@@ -164,7 +165,8 @@ namespace edu.ksu.cis.masaaki
                     //wishListDialog.AddDisplayItems(null);  // XXX null is a dummy argument
                     if (wishListDialog.Display() == DialogReturn.Done) return;
                     // select is pressed
-                    
+                    controller.PopulateBookInfo(ref bookInWishListDialog, controller.CurrentCustomer.Wishlist[wishListDialog.SelectedIndex]);
+
                     switch (bookInWishListDialog.Display())
                     {
                         case DialogReturn.AddToCart:
@@ -173,6 +175,7 @@ namespace edu.ksu.cis.masaaki
                             continue;
                         case DialogReturn.Remove:
                             // XXX
+                            controller.RemoveFromWishlist(controller.CurrentCustomer.Wishlist[wishListDialog.SelectedIndex].ISBN);
 
                             continue;
                         case DialogReturn.Done: // Done
@@ -195,7 +198,7 @@ namespace edu.ksu.cis.masaaki
                 try
                 {  // to capture an exception from SelectedIndex/SelectedItem of carDisplay
                     cartDialog.ClearDisplayItems();
-                    cartDialog.AddDisplayItems(null); // null is a dummy argument
+                    //cartDialog.AddDisplayItems(null); // null is a dummy argument
                     switch (cartDialog.Display())
                     {
                         case DialogReturn.CheckOut:  // check out
@@ -214,7 +217,7 @@ namespace edu.ksu.cis.masaaki
                 catch (BookShopException bsex)
                 {
                     MessageBox.Show(this, bsex.ErrorMessage);
-                    continue;
+                    return;
                 }
             }
         }

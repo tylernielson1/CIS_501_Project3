@@ -93,6 +93,11 @@ namespace edu.ksu.cis.masaaki
             lc.AddDisplayItems(customers.ToArray());
         }
 
+        public void ListCart(ref CartDialog cd)
+        {
+            currentCustomer.showCart(ref cd);
+        }
+
         public void AddToWishList(string i)
         {
             if (!loggedOn)
@@ -104,6 +109,28 @@ namespace edu.ksu.cis.masaaki
                 if(b.ISBN == i)
                 {
                     currentCustomer.addBookToWishlist(b);
+                }
+            }
+        }
+
+        public void RemoveFromWishlist(string i)
+        {
+            foreach(Book b in books)
+            {
+                if(b.ISBN == i)
+                {
+                    currentCustomer.removeBookFromWishlist(b);
+                }
+            }
+        }
+
+        public void AddToCart(string i)
+        {
+            foreach(Book b in books)
+            {
+                if(b.ISBN == i)
+                {
+                    //TODO: Implement in customer class.
                 }
             }
         }
@@ -155,9 +182,29 @@ namespace edu.ksu.cis.masaaki
             bid.Stock = b.Stock;
         }
 
+        public void PopulateBookInfo(ref BookInWishListDialog bid, Book b)
+        {
+            bid.BookTitle = b.Title;
+            bid.Author = b.Author;
+            bid.Publisher = b.Publisher;
+            bid.ISBN = b.ISBN;
+            bid.Price = b.Price;
+            bid.Date = b.Date;
+            bid.Stock = b.Stock;
+        }
+
         public void EditCustomerInfo(ref CustomerDialog cd)
         {
-
+            usernames.Remove(currentCustomer.Username);
+            currentCustomer.FirstName = cd.FirstName;
+            currentCustomer.LastName = cd.LastName;
+            currentCustomer.Username = cd.UserName;
+            currentCustomer.Password = cd.Password;
+            currentCustomer.Email = cd.EMailAddress;
+            currentCustomer.Address = cd.Address;
+            currentCustomer.PhoneNumber = cd.TelephoneNumber;
+            usernames.Add(currentCustomer.Username);
+            
         }
     }
 }
