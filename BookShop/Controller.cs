@@ -34,7 +34,7 @@ namespace edu.ksu.cis.masaaki
 
         public bool LoggedIn
         {
-            get { return loggedOn;}
+            get { return loggedOn; }
         }
 
         public List<Transaction> PendingTransactions
