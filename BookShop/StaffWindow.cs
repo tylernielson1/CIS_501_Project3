@@ -114,6 +114,7 @@ namespace edu.ksu.cis.masaaki
                     controller.ListBooks(ref listBooksDialog);
                     if (listBooksDialog.Display() == DialogReturn.Done) return;
                     // select is pressed
+                    controller.PopulateBookInfo(ref bookDialog, controller.Books[listBooksDialog.SelectedIndex]);
 
                     while (true)
                     {

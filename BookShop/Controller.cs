@@ -95,6 +95,10 @@ namespace edu.ksu.cis.masaaki
 
         public void ListCart(ref CartDialog cd)
         {
+            if (!loggedOn)
+            {
+                throw new BookShopException("This operation requires login.");
+            }
             currentCustomer.showCart(ref cd);
         }
 
@@ -130,7 +134,7 @@ namespace edu.ksu.cis.masaaki
             {
                 if(b.ISBN == i)
                 {
-                    //TODO: Implement in customer class.
+                    currentCustomer.AddToCart(b);
                 }
             }
         }
@@ -157,6 +161,17 @@ namespace edu.ksu.cis.masaaki
         public void ListCompletedTransactions()
         {
 
+        }
+
+        public void ShowCustomerHistory(ref ListTransactionHistoryDialog th)
+        {
+            currentCustomer.showHistory(ref th);
+        }
+
+        public void CheckOut()
+        {
+            pendingTransactions.Add(currentCustomer.CurrentCart);
+            currentCustomer.CheckCustOut();
         }
 
         public void PopulateCustomerDialog(ref CustomerDialog cd)
@@ -193,6 +208,17 @@ namespace edu.ksu.cis.masaaki
             bid.Stock = b.Stock;
         }
 
+        public void PopulateBookInfo(ref BookDialog bd, Book b)
+        {
+            bd.BookTitle = b.Title;
+            bd.Author = b.Author;
+            bd.Publisher = b.Publisher;
+            bd.ISBN = b.ISBN;
+            bd.Price = b.Price;
+            bd.Date = b.Date;
+            bd.Stock = b.Stock;
+        }
+
         public void EditCustomerInfo(ref CustomerDialog cd)
         {
             usernames.Remove(currentCustomer.Username);
@@ -205,6 +231,19 @@ namespace edu.ksu.cis.masaaki
             currentCustomer.PhoneNumber = cd.TelephoneNumber;
             usernames.Add(currentCustomer.Username);
             
+        }
+
+        public void EditBookInfo(ref BookDialog bd, Book b)
+        {
+            isbnList.Remove(b.ISBN);
+            b.Title = bd.BookTitle;
+            b.Author = bd.Author;
+            b.Publisher = bd.Publisher;
+            b.ISBN = bd.ISBN;
+            b.Price = bd.Price;
+            b.Date = bd.Date;
+            b.Stock = bd.Stock;
+            isbnList.Add(b.ISBN);
         }
     }
 }

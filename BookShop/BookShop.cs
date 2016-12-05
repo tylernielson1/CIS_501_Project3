@@ -119,7 +119,7 @@ namespace edu.ksu.cis.masaaki
                                     break;
                                 case "CheckOut":
                                     // XXX check out the current customer's cart
-
+                                    controller.CheckOut();
                                     break;
                                 case "ProcessPendingTransaction":
                                     // XXX use words[1] (index of the pending transactions) to identify the pending

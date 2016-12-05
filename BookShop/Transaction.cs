@@ -8,7 +8,7 @@ namespace edu.ksu.cis.masaaki
 {
     public class Transaction
     {
-        private double totalPrice;
+        private decimal totalPrice;
         private Customer customer;
         private List<PurchasedItem> cart = new List<PurchasedItem>();
 
@@ -22,13 +22,20 @@ namespace edu.ksu.cis.masaaki
             get { return cart; }
         }
 
-        /*public override string ToString()
+        public decimal Price
+        {
+            get { return totalPrice; }
+            set { totalPrice = value; }
+        }
+
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             foreach(PurchasedItem p in cart)
             {
-                sb.Append
+                sb.Append(p.Book.Title + "(" + p.Quantity + ")" + ",  ");
             }
-        }*/
+            return sb.ToString();
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace edu.ksu.cis.masaaki
         public string ISBN
         {
             get { return isbn; }
+            set { isbn = value; }
         }
 
         public string Title

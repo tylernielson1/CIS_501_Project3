@@ -131,7 +131,7 @@ namespace edu.ksu.cis.masaaki
                     {
                         
                         case DialogReturn.AddToCart: // Add to Cart
-                           // XXX
+                            controller.AddToCart(controller.Books[listBooksDialog.SelectedIndex].ISBN);
                             continue;
 
                         case DialogReturn.AddToWishList: // Add to Wishlist
@@ -171,7 +171,8 @@ namespace edu.ksu.cis.masaaki
                     {
                         case DialogReturn.AddToCart:
                             // XXX 
-
+                            controller.AddToCart(controller.CurrentCustomer.Wishlist[wishListDialog.SelectedIndex].ISBN);
+                            controller.RemoveFromWishlist(controller.CurrentCustomer.Wishlist[wishListDialog.SelectedIndex].ISBN);
                             continue;
                         case DialogReturn.Remove:
                             // XXX
@@ -198,10 +199,14 @@ namespace edu.ksu.cis.masaaki
                 try
                 {  // to capture an exception from SelectedIndex/SelectedItem of carDisplay
                     cartDialog.ClearDisplayItems();
+                    controller.ListCart(ref cartDialog);
+                    cartDialog.AddDisplayItems("====================================================");
+                    cartDialog.AddDisplayItems("Total Price: $" + controller.CurrentCustomer.CurrentCart.Price);
                     //cartDialog.AddDisplayItems(null); // null is a dummy argument
                     switch (cartDialog.Display())
                     {
                         case DialogReturn.CheckOut:  // check out
+                            controller.CheckOut();
                             // XXX
 
                             return;
@@ -227,17 +232,21 @@ namespace edu.ksu.cis.masaaki
             // XXX Transaction History button handler
             while (true)
             {
-                
+
                 try
                 {  // to capture an exception from SelectedIndex/SelectedItem of listTransactionHistoryDialog
                     listTransactionHistoryDialog.ClearDisplayItems();
-                    listTransactionHistoryDialog.AddDisplayItems(null); // null is a dummy argument
+                    controller.ShowCustomerHistory(ref listTransactionHistoryDialog);
+                    //listTransactionHistoryDialog.AddDisplayItems(null); // null is a dummy argument
                     if (listTransactionHistoryDialog.Display() == DialogReturn.Done) return;
                     // Select is pressed
-                    
+
 
                     showTransactionDialog.ClearDisplayItems();
-                    showTransactionDialog.AddDisplayItems(null); // null is a dummy argument
+                    showTransactionDialog.AddDisplayItems(controller.CurrentCustomer.History[listTransactionHistoryDialog.SelectedIndex].Cart.ToArray());
+                    showTransactionDialog.AddDisplayItems("====================================================");
+                    showTransactionDialog.AddDisplayItems("Total Price: $" + controller.CurrentCustomer.History[listTransactionHistoryDialog.SelectedIndex].Price);
+                    //showTransactionDialog.AddDisplayItems(null); // null is a dummy argument
                     showTransactionDialog.ShowDialog();
                 }
                 catch(BookShopException bsex)

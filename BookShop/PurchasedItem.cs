@@ -30,7 +30,7 @@ namespace edu.ksu.cis.masaaki
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(book.Title + " BY " + book.Author + " : " + quantity);
+            sb.Append(book.Title + " BY " + book.Author + " : " + quantity + "    $" + book.Price);
             return sb.ToString();
         }
     }

@@ -28,6 +28,7 @@ namespace edu.ksu.cis.masaaki
             this.email = em;
             this.address = add;
             this.phoneNumber = pn;
+            this.currentCart = new Transaction(this);
         }
 
         public string Username
@@ -77,6 +78,16 @@ namespace edu.ksu.cis.masaaki
             set { phoneNumber = value; }
         }
 
+        public Transaction CurrentCart
+        {
+            get { return currentCart; }
+        }
+        
+        public List<Transaction> History
+        {
+            get { return transactionHistory; }
+        }
+
         public void showWishlist(ref WishListDialog wd)
         {
             wd.AddDisplayItems(wishlist.ToArray());
@@ -94,26 +105,36 @@ namespace edu.ksu.cis.masaaki
         public void AddToCart(Book b)
         {
             if (b.Stock <= 0) throw new BookShopException("This book is out of stock.");
-            foreach(PurchasedItem p in currentCart.Cart)
+            foreach(PurchasedItem pi in currentCart.Cart)
             {
-                if(p.Book.ISBN == b.ISBN)
+                if(pi.Book.ISBN == b.ISBN)
                 {
-                    p.Quantity++;
+                    pi.Quantity++;
+                    currentCart.Price += b.Price;
+                    b.Stock--;
                     return;
                 }
             }
             PurchasedItem p = new PurchasedItem(b, 1);
             currentCart.Cart.Add(p);
+            currentCart.Price += p.Book.Price;
+            b.Stock--;
         }
 
         public void showCart(ref CartDialog cd)
         {
-
+            cd.AddDisplayItems(currentCart.Cart.ToArray());
         }
 
-        public void showHistory()
+        public void showHistory(ref ListTransactionHistoryDialog th)
         {
+                th.AddDisplayItems(transactionHistory.ToArray());
+        }
 
+        public void CheckCustOut()
+        {
+            transactionHistory.Add(currentCart);
+            currentCart = new Transaction(this);
         }
 
         public override string ToString()
