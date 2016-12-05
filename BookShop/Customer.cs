@@ -134,6 +134,31 @@ namespace edu.ksu.cis.masaaki
                     {
                         currentCart.Cart.Remove(pi);
                     }
+                    break;
+                }
+            }
+        }
+
+        public void RemoveBookFromHistory(Transaction t, PurchasedItem pi)
+        {
+            foreach(Transaction trans in transactionHistory)
+            {
+                if(trans == t)
+                {
+                    foreach(PurchasedItem p in t.Cart)
+                    {
+                        if(pi == p)
+                        {
+                            pi.Quantity--;
+                            t.Price -= pi.Book.Price;
+                            pi.Book.Stock++;
+                            if(pi.Quantity <= 0)
+                            {
+                                t.Cart.Remove(pi);
+                            }
+                            break;
+                        }
+                    }
                 }
             }
         }

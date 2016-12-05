@@ -166,11 +166,14 @@ namespace edu.ksu.cis.masaaki
             }
         }
 
-        public void RemoveFromPending(string i)
+        public void RemoveFromPending(Customer c, PurchasedItem pi, Transaction t)
         {
-            foreach(Book b in books)
+            foreach(Customer cust in customers)
             {
-
+                if(cust == c)
+                {
+                    c.RemoveBookFromHistory(t, pi);
+                }
             }
         }
 

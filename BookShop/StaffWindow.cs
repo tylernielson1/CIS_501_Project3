@@ -173,7 +173,9 @@ namespace edu.ksu.cis.masaaki
                                     break;
                                 case DialogReturn.ReturnBook: // Return Book
                                     // XXX
-                                    controller.RemoveFromPending(controller.PendingTransactions[showPendingTransactionDialog.SelectedIndex].Customer)
+                                    controller.RemoveFromPending(controller.PendingTransactions[listPendingTransactionsDialog.SelectedIndex].Customer, 
+                                        controller.PendingTransactions[listPendingTransactionsDialog.SelectedIndex].Cart[showPendingTransactionDialog.SelectedIndex],
+                                        controller.PendingTransactions[listPendingTransactionsDialog.SelectedIndex]);
                                     continue;
                                 case DialogReturn.Remove: // Remove transaction
                                     // XXX
