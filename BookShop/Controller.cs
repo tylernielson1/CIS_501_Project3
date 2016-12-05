@@ -27,6 +27,11 @@ namespace edu.ksu.cis.masaaki
             get { return books; }
         }
 
+        public List<Customer> Customers
+        {
+            get { return customers; }
+        }
+
         public bool LoggedIn
         {
             get { return loggedOn;}
@@ -139,6 +144,17 @@ namespace edu.ksu.cis.masaaki
             }
         }
 
+        public void RemoveFromCart(string i)
+        {
+            foreach(Book b in books)
+            {
+                if(b.ISBN == i)
+                {
+                    currentCustomer.RemoveFromCart(b);
+                }
+            }
+        }
+
         public void DisplayWishlist(ref WishListDialog wd)
         {
             if (!loggedOn)
@@ -165,6 +181,7 @@ namespace edu.ksu.cis.masaaki
 
         public void ShowCustomerHistory(ref ListTransactionHistoryDialog th)
         {
+            if (!loggedOn) throw new BookShopException("This operation requires login.");
             currentCustomer.showHistory(ref th);
         }
 
@@ -184,6 +201,17 @@ namespace edu.ksu.cis.masaaki
             cd.EMailAddress = currentCustomer.Email;
             cd.Address = currentCustomer.Address;
             cd.TelephoneNumber = currentCustomer.PhoneNumber;
+        }
+
+        public void PopulateCustomerDialog(ref CustomerDialog cd, Customer cust)
+        {
+            cd.FirstName = cust.FirstName;
+            cd.LastName = cust.LastName;
+            cd.UserName = cust.Username;
+            cd.Password = cust.Password;
+            cd.EMailAddress = cust.Email;
+            cd.Address = cust.Address;
+            cd.TelephoneNumber = cust.PhoneNumber;
         }
 
         public void PopulateBookInfo(ref BookInformationDialog bid, Book b)
@@ -230,7 +258,19 @@ namespace edu.ksu.cis.masaaki
             currentCustomer.Address = cd.Address;
             currentCustomer.PhoneNumber = cd.TelephoneNumber;
             usernames.Add(currentCustomer.Username);
-            
+        }
+
+        public void EditCustomerInfo(ref CustomerDialog cd, Customer c)
+        {
+            usernames.Remove(c.Username);
+            c.FirstName = cd.FirstName;
+            c.LastName = cd.LastName;
+            c.Username = cd.UserName;
+            c.Password = cd.Password;
+            c.Email = cd.EMailAddress;
+            c.Address = cd.Address;
+            c.PhoneNumber = cd.TelephoneNumber;
+            usernames.Add(c.Username);
         }
 
         public void EditBookInfo(ref BookDialog bd, Book b)

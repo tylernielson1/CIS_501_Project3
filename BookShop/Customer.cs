@@ -121,6 +121,23 @@ namespace edu.ksu.cis.masaaki
             b.Stock--;
         }
 
+        public void RemoveFromCart(Book b)
+        {
+            foreach(PurchasedItem pi in currentCart.Cart)
+            {
+                if(pi.Book.ISBN == b.ISBN)
+                {
+                    pi.Quantity--;
+                    currentCart.Price -= b.Price;
+                    b.Stock++;
+                    if(pi.Quantity <= 0)
+                    {
+                        currentCart.Cart.Remove(pi);
+                    }
+                }
+            }
+        }
+
         public void showCart(ref CartDialog cd)
         {
             cd.AddDisplayItems(currentCart.Cart.ToArray());
@@ -128,7 +145,7 @@ namespace edu.ksu.cis.masaaki
 
         public void showHistory(ref ListTransactionHistoryDialog th)
         {
-                th.AddDisplayItems(transactionHistory.ToArray());
+            th.AddDisplayItems(transactionHistory.ToArray());
         }
 
         public void CheckCustOut()

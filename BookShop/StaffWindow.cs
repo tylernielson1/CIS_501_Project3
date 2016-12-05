@@ -64,10 +64,12 @@ namespace edu.ksu.cis.masaaki
                     controller.ListCustomers(ref listCustomersDialog);
                     if (listCustomersDialog.Display() == DialogReturn.Done) return;
                     // select button is pressed
+                    controller.PopulateCustomerDialog(ref customerDialog, controller.Customers[listCustomersDialog.SelectedIndex]);
                    
 
                     if (customerDialog.Display() == DialogReturn.Cancel) continue;
                     // XXX Edit Done button is pressed
+                    controller.EditCustomerInfo(ref customerDialog, controller.Customers[listCustomersDialog.SelectedIndex]);
                     
                 }
                 catch (BookShopException bsex)
@@ -123,6 +125,7 @@ namespace edu.ksu.cis.masaaki
                         { // to capture an exception from Price/Stock of bookDialog
                             if (bookDialog.Display() == DialogReturn.Cancel) break;
                             // XXX
+                            controller.EditBookInfo(ref bookDialog, controller.Books[listBooksDialog.SelectedIndex]);
 
                             break;
                         }

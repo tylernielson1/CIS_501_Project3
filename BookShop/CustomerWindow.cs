@@ -211,6 +211,7 @@ namespace edu.ksu.cis.masaaki
 
                             return;
                         case DialogReturn.ReturnBook: // remove a book
+                            controller.RemoveFromCart(controller.CurrentCustomer.CurrentCart.Cart[cartDialog.SelectedIndex].Book.ISBN);
                                // XXX
 
                                 continue;
@@ -252,6 +253,7 @@ namespace edu.ksu.cis.masaaki
                 catch(BookShopException bsex)
                 {
                     MessageBox.Show(this, bsex.ErrorMessage);
+                    return;
                 }
             }
         }
