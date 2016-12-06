@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace edu.ksu.cis.masaaki
 {
+    [Serializable]
     public class Customer
     {
         private string firstName;
@@ -90,7 +91,10 @@ namespace edu.ksu.cis.masaaki
 
         public void showWishlist(ref WishListDialog wd)
         {
-            wd.AddDisplayItems(wishlist.ToArray());
+            foreach(Book b in wishlist)
+            {
+                wd.AddDisplayItems(b.WishlistString());
+            }
         }
 
         public void addBookToWishlist(Book b)

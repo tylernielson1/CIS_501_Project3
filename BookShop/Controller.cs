@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace edu.ksu.cis.masaaki
 {
@@ -377,6 +379,43 @@ namespace edu.ksu.cis.masaaki
             b.Date = bd.Date;
             b.Stock = bd.Stock;
             isbnList.Add(b.ISBN);
+        }
+
+        public void Serialize(string fn)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream f = new FileStream(fn, FileMode.Create, FileAccess.Write))
+            {
+                Tuple<List<Book>, List<Customer>, List<Transaction>, List<Transaction>> toSerialize
+                    = new Tuple<List<Book>, List<Customer>, List<Transaction>, List<Transaction>>(books, customers, pendingTransactions, completedTransactions);
+
+                bf.Serialize(f, toSerialize);
+            }
+
+            //For testing purposes.
+            books = new List<Book>();
+            customers = new List<Customer>();
+            pendingTransactions = new List<Transaction>();
+            completedTransactions = new List<Transaction>();
+
+
+        }
+
+        public void Deserialize(string fn)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream f = new FileStream(fn, FileMode.OpenOrCreate, FileAccess.Read))
+            {
+                Tuple<List<Book>, List<Customer>, List<Transaction>, List<Transaction>> toDeserialize
+                    = (Tuple<List<Book>, List<Customer>, List<Transaction>, List<Transaction>>)bf.Deserialize(f);
+
+                //For testing purposes.
+                books = toDeserialize.Item1;
+                customers = toDeserialize.Item2;
+                pendingTransactions = toDeserialize.Item3;
+                completedTransactions = toDeserialize.Item4;
+            }
+
         }
     }
 }

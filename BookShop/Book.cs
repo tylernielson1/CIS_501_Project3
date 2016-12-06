@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace edu.ksu.cis.masaaki
 {
+    [Serializable]
     public class Book
     {
         private string title;
@@ -69,6 +70,13 @@ namespace edu.ksu.cis.masaaki
             this.Stock = s;
         }
 
+        public string WishlistString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(Title + " BY " + Author);
+            return sb.ToString();
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -77,7 +85,6 @@ namespace edu.ksu.cis.masaaki
             sb.Append(Publisher + " ");
             sb.Append(isbn + " ");
             sb.Append(Price + " ");
-            sb.Append(Date + " ");
             sb.Append(Stock);
             return sb.ToString();
         }

@@ -246,7 +246,7 @@ namespace edu.ksu.cis.masaaki
                 saveFileDialog.AddExtension = true;
                 saveFileDialog.InitialDirectory = Application.StartupPath;
                 if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
-                // XXX
+                controller.Serialize(saveFileDialog.FileName);
             }
             catch (Exception)
             {
@@ -264,6 +264,7 @@ namespace edu.ksu.cis.masaaki
                 openFileDialog.InitialDirectory = Application.StartupPath;
                 if (openFileDialog.ShowDialog() != DialogResult.OK) return;
                 // XXX
+                controller.Deserialize(openFileDialog.FileName);
             }
  
             catch (Exception)
