@@ -200,8 +200,8 @@ namespace edu.ksu.cis.masaaki
                 {  // to capture an exception from SelectedIndex/SelectedItem of carDisplay
                     cartDialog.ClearDisplayItems();
                     controller.ListCart(ref cartDialog);
-                    cartDialog.AddDisplayItems("====================================================");
-                    cartDialog.AddDisplayItems("Total Price: $" + controller.CurrentCustomer.CurrentCart.Price);
+                    //cartDialog.AddDisplayItems("====================================================");
+                    //cartDialog.AddDisplayItems("Total Price: $" + controller.CurrentCustomer.CurrentCart.Price);
                     //cartDialog.AddDisplayItems(null); // null is a dummy argument
                     switch (cartDialog.Display())
                     {

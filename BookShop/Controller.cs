@@ -118,6 +118,7 @@ namespace edu.ksu.cis.masaaki
                 throw new BookShopException("This operation requires login.");
             }
             currentCustomer.showCart(ref cd);
+            cd.AddDisplayItems("====================================================", "Total Price: $" + CurrentCustomer.CurrentCart.Price);
         }
 
         public void AddToWishList(string i)
@@ -392,11 +393,12 @@ namespace edu.ksu.cis.masaaki
                 bf.Serialize(f, toSerialize);
             }
 
-            //For testing purposes.
+            /*For testing purposes.
             books = new List<Book>();
             customers = new List<Customer>();
             pendingTransactions = new List<Transaction>();
             completedTransactions = new List<Transaction>();
+            */
 
 
         }
@@ -409,11 +411,12 @@ namespace edu.ksu.cis.masaaki
                 Tuple<List<Book>, List<Customer>, List<Transaction>, List<Transaction>> toDeserialize
                     = (Tuple<List<Book>, List<Customer>, List<Transaction>, List<Transaction>>)bf.Deserialize(f);
 
-                //For testing purposes.
+                /*For testing purposes.
                 books = toDeserialize.Item1;
                 customers = toDeserialize.Item2;
                 pendingTransactions = toDeserialize.Item3;
                 completedTransactions = toDeserialize.Item4;
+                */
             }
 
         }
