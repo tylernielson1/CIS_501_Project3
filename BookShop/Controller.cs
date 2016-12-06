@@ -418,7 +418,6 @@ namespace edu.ksu.cis.masaaki
                 completedTransactions = toDeserialize.Item4;
                 */
             }
-
         }
     }
 }

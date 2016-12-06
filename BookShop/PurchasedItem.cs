@@ -17,6 +17,7 @@ namespace edu.ksu.cis.masaaki
             get { return quantity; }
             set { this.quantity = value; }
         }
+
         public Book Book
         {
             get { return book; }

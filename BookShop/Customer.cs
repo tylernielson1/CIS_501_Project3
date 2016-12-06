@@ -101,6 +101,7 @@ namespace edu.ksu.cis.masaaki
         {
             wishlist.Add(b);
         }
+
         public void removeBookFromWishlist(Book b)
         {
             wishlist.Remove(b);
